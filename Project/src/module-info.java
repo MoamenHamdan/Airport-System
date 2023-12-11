@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Jadjn
- *
- */
-module Project {
-}
