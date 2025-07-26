@@ -71,84 +71,90 @@ public class adminQueue extends admin_linkedlist {
 	}
 
 	public void editAccountInfo() {
-		Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+        try {
+            System.out.println("Please enter your ID:");
+            int id = scan.nextInt();
+            System.out.println("Please enter your password:");
+            String password = scan.next();
 
-		System.out.println("Please enter your ID:");
-		int id = scan.nextInt();
-		System.out.println("Please enter your password:");
-		String password = scan.next();
+            adminQueue temp = new adminQueue();
+            boolean accountFound = false;
 
-		adminQueue temp = new adminQueue();
-		boolean accountFound = false;
+            while (!isEmpty()) {
+                admin currentAdmin = dequeue();
+                if (currentAdmin.getId() == id && currentAdmin.getPassword().equals(password)) {
 
-		while (!isEmpty()) {
-			admin currentAdmin = dequeue();
-			if (currentAdmin.getId() == id && currentAdmin.getPassword().equals(password)) {
+                    System.out.println("Enter new information:");
 
-				System.out.println("Enter new information:");
+                    System.out.print("Enter your first name: ");
+                    currentAdmin.setFirstName(scan.next());
 
-				System.out.print("Enter your first name: ");
-				currentAdmin.setFirstName(scan.next());
+                    System.out.print("Enter your last name: ");
+                    currentAdmin.setLastName(scan.next());
 
-				System.out.print("Enter your last name: ");
-				currentAdmin.setLastName(scan.next());
+                    System.out.print("Enter your phone number: ");
+                    currentAdmin.setPhoneNumber(scan.nextInt());
 
-				System.out.print("Enter your phone number: ");
-				currentAdmin.setPhoneNumber(scan.nextInt());
+                    System.out.println("Account information updated successfully.");
+                    accountFound = true;
+                }
 
-				System.out.println("Account information updated successfully.");
-				accountFound = true;
-			}
+                temp.enqueue(currentAdmin);
+            }
 
-			temp.enqueue(currentAdmin);
-		}
+            while (!temp.isEmpty()) {
+                enqueue(temp.dequeue());
+            }
 
-		while (!temp.isEmpty()) {
-			enqueue(temp.dequeue());
-		}
+            if (!accountFound) {
+                System.out.println("Account not found. Please check your ID and password.");
+            }
+        } finally {
+            scan.close();
+        }
+    }
 
-		if (!accountFound) {
-			System.out.println("Account not found. Please check your ID and password.");
-		}
-	}
+    public void deleteAdminById(int id) {
+        Scanner scan = new Scanner(System.in);
+        try {
+            adminQueue temp = new adminQueue();
+            boolean adminFound = false;
 
-	public void deleteAdminById(int id) {
-		Scanner scan = new Scanner(System.in);
+            while (!isEmpty()) {
+                admin currentAdmin = dequeue();
+                if (currentAdmin.getId() == id) {
 
-		adminQueue temp = new adminQueue();
-		boolean adminFound = false;
+                    System.out.println("Admin found:");
+                    System.out.println("ID: " + currentAdmin.getId());
+                    System.out.println("Name: " + currentAdmin.getFirstName() + " " + currentAdmin.getLastName());
+                    System.out.println("Phone Number: " + currentAdmin.getPhoneNumber());
 
-		while (!isEmpty()) {
-			admin currentAdmin = dequeue();
-			if (currentAdmin.getId() == id) {
+                    System.out.println("Do you want to delete this admin? (yes/no)");
+                    String confirmation = scan.next().toLowerCase();
 
-				System.out.println("Admin found:");
-				System.out.println("ID: " + currentAdmin.getId());
-				System.out.println("Name: " + currentAdmin.getFirstName() + " " + currentAdmin.getLastName());
-				System.out.println("Phone Number: " + currentAdmin.getPhoneNumber());
+                    if (confirmation.equals("yes")) {
 
-				System.out.println("Do you want to delete this admin? (yes/no)");
-				String confirmation = scan.next().toLowerCase();
+                        System.out.println("Admin deleted successfully.");
+                        adminFound = true;
+                    } else {
+                        temp.enqueue(currentAdmin);
+                    }
+                } else {
+                    temp.enqueue(currentAdmin);
+                }
+            }
 
-				if (confirmation.equals("yes")) {
+            while (!temp.isEmpty()) {
+                enqueue(temp.dequeue());
+            }
 
-					System.out.println("Admin deleted successfully.");
-					adminFound = true;
-				} else {
-					temp.enqueue(currentAdmin);
-				}
-			} else {
-				temp.enqueue(currentAdmin);
-			}
-		}
-
-		while (!temp.isEmpty()) {
-			enqueue(temp.dequeue());
-		}
-
-		if (!adminFound) {
-			System.out.println("Admin not found with ID: " + id);
-		}
-	}
+            if (!adminFound) {
+                System.out.println("Admin not found with ID: " + id);
+            }
+        } finally {
+            scan.close();
+        }
+    }
 
 }

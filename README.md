@@ -1,12 +1,35 @@
-The Airport Management System is a comprehensive project designed to address the 
-intricacies involved in efficiently managing an airport's operations, including administration, 
-flight scheduling, and passenger interactions. The project encompasses a robust data 
-structure implementation, featuring classes for administrators, passengers, airplanes, 
-flights, and priority queues, all meticulously designed and integrated to facilitate seamless 
-airport management. The primary objective of this project is to develop a sophisticated 
-system that not only provides essential functionalities but also prioritizes efficiency and 
-user-friendly interactions. By amalgamating data structures, object-oriented programming, 
-and user interfaces, the Airport Management System strives to be a valuable tool for airport 
-personnel, administrators, and passengers alike
+# Airport Management System
 
-Moamen&&Jad data Structure Project for beirut Arab University 
+## Overview
+The Airport Management System is a comprehensive Java project designed to efficiently manage airport operations, including administration, flight scheduling, and passenger interactions. It features robust data structure implementations and object-oriented design for:
+- Administrators
+- Passengers
+- Airplanes
+- Flights
+- Priority Queues
+
+## Features
+- Admin and passenger account management
+- Flight creation, booking, and cancellation
+- Priority queue for flight scheduling
+- Transaction history for passengers
+- Console-based user interface
+
+## How to Run
+1. **Requirements:**
+   - Java 8 or higher
+2. **Compile:**
+   - Navigate to the `Project/src` directory
+   - Run: `javac airport_Man_System/main.java`
+3. **Run:**
+   - Run: `java airport_Man_System.main`
+
+## Authors
+Moamen & Jad
+Beirut Arab University
+
+## License
+Eclipse Public License v2.0
+
+---
+For more details, see the project report.
